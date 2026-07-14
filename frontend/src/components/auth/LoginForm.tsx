@@ -53,7 +53,6 @@ export default function LoginForm() {
             error={!!errors.email}
             helperText={errors.email?.message}
             fullWidth
-            inputProps={{ "data-testid": "email-input" }}
           />
         )}
       />
@@ -70,7 +69,6 @@ export default function LoginForm() {
             error={!!errors.password}
             helperText={errors.password?.message}
             fullWidth
-            inputProps={{ "data-testid": "password-input" }}
           />
         )}
       />

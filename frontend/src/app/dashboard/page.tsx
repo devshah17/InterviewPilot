@@ -20,19 +20,19 @@ export default function DashboardPage() {
       </Typography>
       
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper sx={{ p: 3, bgcolor: '#1e1e2d', color: 'white' }}>
             <Typography variant="h6" gutterBottom color="primary">Active Topics</Typography>
             <Typography variant="h3">0</Typography>
           </Paper>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper sx={{ p: 3, bgcolor: '#1e1e2d', color: 'white' }}>
             <Typography variant="h6" gutterBottom color="primary">Tests Taken</Typography>
             <Typography variant="h3">0</Typography>
           </Paper>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper sx={{ p: 3, bgcolor: '#1e1e2d', color: 'white' }}>
             <Typography variant="h6" gutterBottom color="primary">Mock Interviews</Typography>
             <Typography variant="h3">0</Typography>

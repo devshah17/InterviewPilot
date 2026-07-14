@@ -59,7 +59,6 @@ export default function RegisterForm() {
             error={!!errors.name}
             helperText={errors.name?.message}
             fullWidth
-            inputProps={{ "data-testid": "name-input" }}
           />
         )}
       />
@@ -75,7 +74,6 @@ export default function RegisterForm() {
             error={!!errors.email}
             helperText={errors.email?.message}
             fullWidth
-            inputProps={{ "data-testid": "email-input" }}
           />
         )}
       />
@@ -92,7 +90,6 @@ export default function RegisterForm() {
             error={!!errors.password}
             helperText={errors.password?.message}
             fullWidth
-            inputProps={{ "data-testid": "password-input" }}
           />
         )}
       />

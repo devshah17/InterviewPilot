@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         anchor="left"
       >
         <Toolbar>
-          <Typography variant="h6" fontWeight="bold" sx={{ color: '#90caf9' }}>
+          <Typography variant="h6" sx={{ color: '#90caf9', fontWeight: 'bold' }}>
             InterviewPilot
           </Typography>
         </Toolbar>
