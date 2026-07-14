@@ -1,0 +1,10 @@
+# Agent Configurations & Secrets
+.agents/
+
+# Editor configuration
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
