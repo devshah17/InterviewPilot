@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:ci": "jest --ci --passWithNoTests"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
