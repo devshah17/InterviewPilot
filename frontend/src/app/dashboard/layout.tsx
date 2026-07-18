@@ -56,7 +56,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }}
       >
         <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography variant="h5" fontWeight="bold" sx={{ background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <Typography variant="h5" fontWeight="bold" sx={{ background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } as any}>
             InterviewPilot
           </Typography>
         </Box>
