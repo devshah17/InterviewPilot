@@ -1,7 +1,7 @@
 'use client';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { Typography, Grid2 as Grid, Paper, Box, Button, CircularProgress, IconButton } from '@mui/material';
+import { Typography, Grid, Paper, Box, Button, CircularProgress, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { fetchTopics, deleteTopic } from '@/store/slices/topicSlice';
