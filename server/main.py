@@ -24,3 +24,6 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 @app.get("/health", tags=["healthcheck"])
 async def health_check():
     return {"status": "ok", "message": "Server is running smoothly."}
+
+from mangum import Mangum
+handler = Mangum(app)
