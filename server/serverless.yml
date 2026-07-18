@@ -1,6 +1,6 @@
 service: interviewpilot-backend
 
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
@@ -11,9 +11,9 @@ provider:
   timeout: 30
   environment:
     # IMPORTANT: We assume the following env vars are passed in from GitHub Actions secrets
-    MONGODB_URL: ${env:MONGODB_URL, ''}
-    JWT_SECRET: ${env:JWT_SECRET, ''}
-    BACKEND_CORS_ORIGINS: '["*"]' # Allow all for lambda staging initially
+    DB_URL: ${env:DB_URL, ''}
+    SECRET_KEY: ${env:SECRET_KEY, ''}
+    BACKEND_CORS_ORIGINS: ${env:BACKEND_CORS_ORIGINS, '["http://localhost:3000"]'}
 
 plugins:
   - serverless-python-requirements
@@ -27,15 +27,15 @@ functions:
     handler: main.handler
     events:
       - httpApi:
-          path: '/{proxy+}'
-          method: '*'
+          path: "/{proxy+}"
+          method: "*"
       - httpApi:
-          path: '/'
-          method: '*'
+          path: "/"
+          method: "*"
 
 package:
   patterns:
-    - '!venv/**'
-    - '!.pytest_cache/**'
-    - '!__pycache__/**'
-    - '!*.md'
+    - "!venv/**"
+    - "!.pytest_cache/**"
+    - "!__pycache__/**"
+    - "!*.md"

@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'server/**'
-      - '.github/workflows/deploy-backend.yml'
+      - "server/**"
+      - ".github/workflows/deploy-backend.yml"
 
 jobs:
   deploy:
@@ -23,12 +23,12 @@ jobs:
       - name: Setup Node.js (for Serverless Framework)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install Serverless Framework
         run: npm install -g serverless@3
@@ -40,6 +40,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          MONGODB_URL: ${{ secrets.MONGODB_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DB_URL: ${{ secrets.DB_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          BACKEND_CORS_ORIGINS: ${{ secrets.BACKEND_CORS_ORIGINS }}
         run: serverless deploy --stage dev --region us-east-1
