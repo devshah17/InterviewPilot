@@ -1,9 +1,10 @@
 from fastapi import APIRouter
-from api.endpoints import auth
+from api.endpoints import auth, topics
 
 router = APIRouter()
 
 router.include_router(auth.router, prefix="/auth", tags=["authentication"])
+router.include_router(topics.router, prefix="/topics", tags=["topics"])
 
 @router.get("/")
 async def root():

@@ -22,70 +22,98 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       await fetch('http://localhost:8000/api/v1/auth/logout', { method: 'POST' });
       dispatch(logoutUser());
       router.push('/login');
-    } catch (e) {
-      console.error(e);
-    }
+  const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+  
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/login');
   };
 
+  const navItems = [
+    { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+    { text: 'Mock Interviews', icon: <QuizIcon />, path: '/dashboard/interviews' },
+    { text: 'Settings', icon: <SettingsIcon />, path: '/dashboard/settings' },
+  ];
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: '#1e1e2d' }}>
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Dashboard
-          </Typography>
-          <Typography variant="body1" sx={{ mr: 2 }}>
-            {user?.name || 'User'}
-          </Typography>
-          <Button color="inherit" onClick={handleLogout} startIcon={<LogoutIcon />}>
-            Logout
-          </Button>
-        </Toolbar>
-      </AppBar>
-      
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#121212' }}>
       <Drawer
+        variant="permanent"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: '#151521',
+            bgcolor: '#1a1a2e',
             color: 'white',
+            borderRight: '1px solid rgba(255,255,255,0.05)'
           },
         }}
-        variant="permanent"
-        anchor="left"
       >
-        <Toolbar>
-          <Typography variant="h6" sx={{ color: '#90caf9', fontWeight: 'bold' }}>
+        <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="h5" fontWeight="bold" sx={{ background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             InterviewPilot
           </Typography>
-        </Toolbar>
-        <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />
-        <List>
-          {[
-            { text: 'Overview', icon: <DashboardIcon /> },
-            { text: 'Topics', icon: <TopicIcon /> },
-            { text: 'Learning', icon: <SchoolIcon /> },
-            { text: 'Mock Interview', icon: <SmartToyIcon /> },
-          ].map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton sx={{ '&:hover': { backgroundColor: 'rgba(144,202,249,0.1)' } }}>
-                <ListItemIcon sx={{ color: '#90caf9' }}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        </Box>
+
+        <Box sx={{ px: 3, pb: 3 }}>
+          <Box sx={{ p: 2, borderRadius: 3, bgcolor: 'rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Avatar sx={{ bgcolor: '#2196F3', width: 40, height: 40 }}>{user?.name?.charAt(0) || 'U'}</Avatar>
+              <Box>
+                <Typography variant="subtitle2" fontWeight="bold">{user?.name || 'User'}</Typography>
+                <Typography variant="caption" color="text.secondary">{user?.email || ''}</Typography>
+              </Box>
+            </Box>
+            <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography variant="caption" color="text.secondary">Study Streak</Typography>
+              <Chip size="small" icon={<LocalFireDepartmentIcon sx={{ color: '#ff9800 !important' }} />} label="3 Days" sx={{ bgcolor: 'rgba(255, 152, 0, 0.1)', color: '#ff9800', fontWeight: 'bold' }} />
+            </Box>
+          </Box>
+        </Box>
+
+        <List sx={{ px: 2, flexGrow: 1 }}>
+          {navItems.map((item) => {
+            const active = pathname === item.path;
+            return (
+              <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
+                <ListItemButton 
+                  onClick={() => router.push(item.path)}
+                  sx={{ 
+                    borderRadius: 2, 
+                    bgcolor: active ? 'rgba(33, 150, 243, 0.15)' : 'transparent',
+                    color: active ? '#2196F3' : 'text.secondary',
+                    '&:hover': { bgcolor: 'rgba(33, 150, 243, 0.25)', color: '#2196F3' }
+                  }}
+                >
+                  <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: active ? 'bold' : 'medium' }} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </List>
+        <List sx={{ px: 2, pb: 2 }}>
+          <ListItem disablePadding>
+            <ListItemButton 
+              onClick={handleLogout}
+              sx={{ borderRadius: 2, color: 'text.secondary', '&:hover': { bgcolor: 'rgba(244, 67, 54, 0.1)', color: '#f44336' } }}
+            >
+              <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign Out" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
-      
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, pt: 10, minHeight: '100vh' }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, p: 4, bgcolor: '#121212' }}>
         {children}
       </Box>
     </Box>
