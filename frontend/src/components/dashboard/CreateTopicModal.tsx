@@ -59,8 +59,8 @@ export function CreateTopicModal({ open, onClose }: Props) {
     <Dialog 
       open={open} 
       onClose={onClose}
-      PaperProps={{
-        sx: {
+      sx={{
+        '& .MuiDialog-paper': {
           background: 'rgba(30, 30, 45, 0.85)',
           backdropFilter: 'blur(16px)',
           borderRadius: 3,
@@ -69,8 +69,8 @@ export function CreateTopicModal({ open, onClose }: Props) {
         }
       }}
     >
-      <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h6" fontWeight="bold">Create New Topic</Typography>
+      <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}>
+        Create New Topic
         <IconButton onClick={onClose} size="small" sx={{ color: 'text.secondary' }}>
           <CloseIcon />
         </IconButton>

@@ -95,7 +95,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: active ? 'bold' : 'medium' }} />
+                  <ListItemText primary={<Typography fontWeight={active ? 'bold' : 'medium'}>{item.text}</Typography>} />
                 </ListItemButton>
               </ListItem>
             );

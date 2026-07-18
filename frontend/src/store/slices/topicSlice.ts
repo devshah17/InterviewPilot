@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Topic {
   id: string;
-  title: str; // intentionally typo to be fixed later if needed, wait no.
   title: string;
   description: string | null;
   tags: string[];
@@ -28,7 +27,8 @@ export const fetchTopics = createAsyncThunk('topics/fetchTopics', async () => {
     credentials: 'include',
   });
   if (!response.ok) throw new Error('Failed to fetch topics');
-  return response.json();
+  const data = await response.json();
+  return data.map((t: any) => ({ ...t, id: t._id }));
 });
 
 export const createTopic = createAsyncThunk('topics/createTopic', async (topicData: Partial<Topic>) => {
@@ -39,7 +39,8 @@ export const createTopic = createAsyncThunk('topics/createTopic', async (topicDa
     body: JSON.stringify(topicData),
   });
   if (!response.ok) throw new Error('Failed to create topic');
-  return response.json();
+  const data = await response.json();
+  return { ...data, id: data._id };
 });
 
 export const deleteTopic = createAsyncThunk('topics/deleteTopic', async (topicId: string) => {
