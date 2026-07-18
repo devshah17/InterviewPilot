@@ -42,7 +42,7 @@ export default function DashboardPage() {
       ) : topics.length === 0 ? (
         <Paper sx={{ p: 8, textAlign: 'center', bgcolor: 'rgba(30, 30, 45, 0.4)', backdropFilter: 'blur(10px)', borderRadius: 4, border: '1px dashed rgba(255,255,255,0.2)' }}>
           <Typography variant="h6" color="text.secondary" gutterBottom>No topics found</Typography>
-          <Typography variant="body2" color="text.disabled" mb={3}>Create your first topic to start your mock interview journey.</Typography>
+          <Typography variant="body2" sx={{ color: 'text.disabled', mb: 3 }}>Create your first topic to start your mock interview journey.</Typography>
           <Button variant="outlined" startIcon={<AddIcon />} onClick={() => setModalOpen(true)}>Create Topic</Button>
         </Paper>
       ) : (
