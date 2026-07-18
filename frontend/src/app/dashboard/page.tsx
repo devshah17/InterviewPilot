@@ -22,7 +22,7 @@ export default function DashboardPage() {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
           Welcome back, {user?.name?.split(' ')[0] || 'Pilot'}! 🚀
         </Typography>
         <Button 
@@ -75,7 +75,7 @@ export default function DashboardPage() {
                     <DeleteOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Box>
-                <Typography variant="h6" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>{topic.title}</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 2, mb: 1 }}>{topic.title}</Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1, mb: 2 }}>
                   {topic.description || 'No description provided.'}
                 </Typography>

@@ -56,7 +56,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }}
       >
         <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography variant="h5" fontWeight="bold" sx={{ background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } as any}>
+          <Typography variant="h5" sx={{ fontWeight: 'bold', background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } as any}>
             InterviewPilot
           </Typography>
         </Box>
@@ -66,7 +66,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Avatar sx={{ bgcolor: '#2196F3', width: 40, height: 40 }}>{user?.name?.charAt(0) || 'U'}</Avatar>
               <Box>
-                <Typography variant="subtitle2" fontWeight="bold">{user?.name || 'User'}</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>{user?.name || 'User'}</Typography>
                 <Typography variant="caption" color="text.secondary">{user?.email || ''}</Typography>
               </Box>
             </Box>
