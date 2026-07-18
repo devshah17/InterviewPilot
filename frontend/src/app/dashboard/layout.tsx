@@ -1,33 +1,35 @@
 'use client';
-import { Box, Drawer, AppBar, Toolbar, Typography, List, ListItem, ListItemIcon, ListItemText, ListItemButton, Divider, Button } from '@mui/material';
+import { Box, Drawer, AppBar, Toolbar, Typography, List, ListItem, ListItemIcon, ListItemText, ListItemButton, Divider, Button, Avatar, Chip } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TopicIcon from '@mui/icons-material/Topic';
 import SchoolIcon from '@mui/icons-material/School';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import QuizIcon from '@mui/icons-material/Quiz';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { logoutUser } from '@/store/slices/authSlice';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const drawerWidth = 260;
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { user } = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
   const router = useRouter();
-
-  const handleLogout = async () => {
-    try {
-      await fetch('http://localhost:8000/api/v1/auth/logout', { method: 'POST' });
-      dispatch(logoutUser());
-      router.push('/login');
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    try {
+      await fetch('http://localhost:8000/api/v1/auth/logout', { 
+        method: 'POST',
+        credentials: 'include' 
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    dispatch(logoutUser());
     router.push('/login');
   };
 

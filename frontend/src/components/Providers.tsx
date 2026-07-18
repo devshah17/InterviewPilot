@@ -21,7 +21,7 @@ function AuthHydration({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function checkAuth() {
       try {
-        const res = await fetch('http://localhost:8000/api/v1/auth/me');
+        const res = await fetch('http://localhost:8000/api/v1/auth/me', { credentials: 'include' });
         if (res.ok) {
           const user = await res.json();
           store.dispatch(setUser(user));

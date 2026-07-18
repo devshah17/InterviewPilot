@@ -25,9 +25,7 @@ const initialState: TopicState = {
 
 export const fetchTopics = createAsyncThunk('topics/fetchTopics', async () => {
   const response = await fetch('http://localhost:8000/api/v1/topics/', {
-    headers: {
-      // Cookies will be sent automatically by browser if withCredentials is true, or we let proxy handle it
-    },
+    credentials: 'include',
   });
   if (!response.ok) throw new Error('Failed to fetch topics');
   return response.json();
@@ -37,6 +35,7 @@ export const createTopic = createAsyncThunk('topics/createTopic', async (topicDa
   const response = await fetch('http://localhost:8000/api/v1/topics/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify(topicData),
   });
   if (!response.ok) throw new Error('Failed to create topic');
@@ -46,6 +45,7 @@ export const createTopic = createAsyncThunk('topics/createTopic', async (topicDa
 export const deleteTopic = createAsyncThunk('topics/deleteTopic', async (topicId: string) => {
   const response = await fetch(`http://localhost:8000/api/v1/topics/${topicId}`, {
     method: 'DELETE',
+    credentials: 'include',
   });
   if (!response.ok) throw new Error('Failed to delete topic');
   return topicId;

@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { fetchTopics, deleteTopic } from '@/store/slices/topicSlice';
 import { CreateTopicModal } from '@/components/dashboard/CreateTopicModal';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import TopicIcon from '@mui/icons-material/Topic';
 
 export default function DashboardPage() {
@@ -72,7 +72,7 @@ export default function DashboardPage() {
                     <TopicIcon />
                   </Box>
                   <IconButton size="small" onClick={() => dispatch(deleteTopic(topic.id))} sx={{ opacity: 0.5, '&:hover': { opacity: 1, color: 'error.main' } }}>
-                    <DeleteOutlineIcon fontSize="small" />
+                    <DeleteOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Box>
                 <Typography variant="h6" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>{topic.title}</Typography>
